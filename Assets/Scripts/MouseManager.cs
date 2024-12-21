@@ -14,7 +14,6 @@ public class EventVector3 : UnityEvent<Vector3>{}
 public class MouseManager : MonoBehaviour
 {
     public EventVector3 OnMouseClicked;
-    public Color color;
     
     private Ray ray;
     private RaycastHit hitInfo;
