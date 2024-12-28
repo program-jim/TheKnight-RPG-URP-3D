@@ -1,9 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 //-------
 // Old way of Event to translate Vector3.
@@ -17,7 +16,7 @@ using UnityEngine.Rendering.Universal;
 public class MouseManager : MonoBehaviour
 {
     public static MouseManager Instance;
-    public EventVector3 OnMouseClicked;
+    public event Action<Vector3> OnMouseClicked;
     
     private Ray ray;
     private RaycastHit hitInfo;

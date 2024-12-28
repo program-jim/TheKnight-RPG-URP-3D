@@ -12,4 +12,14 @@ public class PlayerController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
     }
+
+    private void Start()
+    {
+        MouseManager.Instance.OnMouseClicked += MoveToTarget;
+    }
+
+    public void MoveToTarget(Vector3 target)
+    {
+        
+    }
 }
