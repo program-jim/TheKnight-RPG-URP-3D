@@ -5,8 +5,11 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-[System.Serializable]
-public class EventVector3 : UnityEvent<Vector3>{}
+//-------
+// Old way of Event to translate Vector3.
+//[System.Serializable]
+//public class EventVector3 : UnityEvent<Vector3>{}
+// -------
 
 /// <summary>
 /// Manage the input controll of PC's mouse. 
