@@ -20,6 +20,6 @@ public class PlayerController : MonoBehaviour
 
     public void MoveToTarget(Vector3 target)
     {
-        
+        agent.destination = target;
     }
 }
