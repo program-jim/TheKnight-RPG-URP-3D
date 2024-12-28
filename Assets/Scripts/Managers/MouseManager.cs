@@ -17,6 +17,7 @@ public class MouseManager : MonoBehaviour
 {
     public static MouseManager Instance;
     public event Action<Vector3> OnMouseClicked;
+    public Texture2D point, doorway, attack, target, arrow;
     
     private Ray ray;
     private RaycastHit hitInfo;
