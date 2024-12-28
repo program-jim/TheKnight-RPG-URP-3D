@@ -54,7 +54,12 @@ public class MouseManager : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             //TODO: Change cursor's texture
-            
+            switch (hitInfo.collider.gameObject.tag)
+            {
+                case "Ground":
+                    Cursor.SetCursor(target, new Vector2(16, 16), CursorMode.Auto);
+                    break;
+            }
         }
     }
 
