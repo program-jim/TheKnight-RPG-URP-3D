@@ -13,6 +13,7 @@ public class EventVector3 : UnityEvent<Vector3>{}
 /// </summary>
 public class MouseManager : MonoBehaviour
 {
+    public static MouseManager Instance;
     public EventVector3 OnMouseClicked;
     
     private Ray ray;
@@ -20,7 +21,14 @@ public class MouseManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Mouse Manager is on.");
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     private void Update()
