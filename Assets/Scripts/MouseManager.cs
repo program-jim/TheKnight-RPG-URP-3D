@@ -34,7 +34,11 @@ public class MouseManager : MonoBehaviour
     /// </summary>
     void SetCursorTexture()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Camera.main != null)
+        {
+            //The Camera.main is not null.
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
 
         if (Physics.Raycast(ray, out hitInfo))
         {
