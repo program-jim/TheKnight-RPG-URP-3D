@@ -20,8 +20,18 @@ public class PlayerController : MonoBehaviour
         MouseManager.Instance.OnMouseClicked += MoveToTarget;
     }
 
+    private void Update()
+    {
+        SwitchAnimation();
+    }
+
     public void MoveToTarget(Vector3 target)
     {
         agent.destination = target;
+    }
+
+    public void SwitchAnimation()
+    {
+        anim.SetFloat("Speed", agent.velocity.sqrMagnitude);
     }
 }
