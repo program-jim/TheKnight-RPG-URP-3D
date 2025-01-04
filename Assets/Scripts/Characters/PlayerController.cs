@@ -7,10 +7,12 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Animator anim;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
