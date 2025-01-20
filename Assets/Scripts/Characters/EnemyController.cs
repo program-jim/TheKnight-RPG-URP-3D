@@ -6,8 +6,19 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
-    public EnemyStates enemyStates;
+    public EnemyStates EnemyStates
+    {
+        get
+        {
+            return enemyStates;
+        }
+    }
+
+    private EnemyStates enemyStates;
     private NavMeshAgent agent;
+
+    [Header("Basic Settings")]
+    public float sightRadius;
 
     void Awake()
     {
