@@ -16,9 +16,12 @@ public class EnemyController : MonoBehaviour
 
     private EnemyStates enemyStates;
     private NavMeshAgent agent;
+    private GameObject attackTarget;
+    private float speed;
 
     [Header("Basic Settings")]
     public float sightRadius;
+    public bool isGuard;
     public bool hasFoundPlayer
     {
         get
@@ -30,6 +33,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        speed = agent.speed;
     }
 
     void Update()
@@ -55,6 +59,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyStates.CHASE:
+                ChaseTarget();
                 break;
 
             case EnemyStates.DEAD:
@@ -70,11 +75,33 @@ public class EnemyController : MonoBehaviour
         {
             if (target.CompareTag("Player"))
             {
+                attackTarget = target.gameObject;
                 return true;
             }
         }
 
+        attackTarget = null;
         return false;
+    }
+
+    private void ChaseTarget()
+    {
+        //TODO:Chase target
+        //TODO:Back to previous state
+        //TODO:Attack target in sight radius
+        //TODO:Do with animation
+        
+        agent.speed = speed;
+        
+        if (!hasFoundPlayer)
+        {
+
+        }
+        else
+        {
+            agent.destination = attackTarget.transform.position;
+
+        }
     }
 }
 
