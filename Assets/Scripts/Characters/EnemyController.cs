@@ -19,6 +19,13 @@ public class EnemyController : MonoBehaviour
 
     [Header("Basic Settings")]
     public float sightRadius;
+    public bool hasFoundPlayer
+    {
+        get
+        {
+            return FoundPlayer();
+        }
+    }
 
     void Awake()
     {
@@ -32,6 +39,13 @@ public class EnemyController : MonoBehaviour
 
     private void SwitchStates()
     {
+        // Switch to CHASE after finding Player.
+        if (hasFoundPlayer)
+        {
+            enemyStates = EnemyStates.CHASE;
+            Debug.Log("Find Player !!!");
+        }
+        
         switch (enemyStates)
         {
             case EnemyStates.GUARD:
@@ -48,6 +62,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private bool FoundPlayer()
+    {
+        var colliders = Physics.OverlapSphere(transform.position, sightRadius);
+
+        foreach (var target in colliders)
+        {
+            if (target.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 public enum EnemyStates
