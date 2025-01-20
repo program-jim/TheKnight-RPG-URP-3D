@@ -15,22 +15,42 @@ using UnityEngine.Events;
 /// </summary>
 public class MouseManager : MonoBehaviour
 {
-    public static MouseManager Instance;
+    public static MouseManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+    private static MouseManager instance;
+
     public event Action<Vector3> OnMouseClicked;
-    public Texture2D point, doorway, attack, target, arrow;
+    public event Action<GameObject> OnEnemyClicked;
+
+    [Header("Cursor Textures")]
+    public Texture2D point;
+    public Texture2D doorway;
+    public Texture2D attack;
+    public Texture2D target;
+    public Texture2D arrow;
+
+    [Header("Cursor Properties")]
+    public Vector2 cursorOffset = new Vector2(16f, 16f);
+    public CursorMode cursorMode = CursorMode.Auto;
+    public CursorLockMode cursorLockMode = CursorLockMode.None;
     
     private Ray ray;
     private RaycastHit hitInfo;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
     }
 
@@ -57,7 +77,11 @@ public class MouseManager : MonoBehaviour
             switch (hitInfo.collider.gameObject.tag)
             {
                 case "Ground":
-                    Cursor.SetCursor(target, new Vector2(16, 16), CursorMode.Auto);
+                    Cursor.SetCursor(target, cursorOffset, cursorMode);
+                    break;
+
+                case "Enemy":
+                    Cursor.SetCursor(attack, cursorOffset, cursorMode);
                     break;
             }
         }
@@ -73,6 +97,11 @@ public class MouseManager : MonoBehaviour
             if (hitInfo.collider.gameObject.CompareTag("Ground"))
             {
                 OnMouseClicked?.Invoke(hitInfo.point);
+            }
+
+            if (hitInfo.collider.gameObject.CompareTag("Enemy"))
+            {
+                OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
             }
         }
     }
