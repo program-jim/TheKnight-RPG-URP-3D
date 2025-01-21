@@ -368,7 +368,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7680683145890208151}
-  m_LocalRotation: {x: -0, y: -0.92528963, z: -0, w: 0.37926126}
+  m_LocalRotation: {x: 0, y: -0.92528915, z: 0, w: 0.3792625}
   m_LocalPosition: {x: 36.386665, y: 0, z: -29.656914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -387,7 +387,7 @@ Animator:
   m_GameObject: {fileID: 7680683145890208151}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 56fc0b4f7d154039a7099564596a545b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9bbcf96c9a254c5ba654027c656d7b39, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1a3280543a855a248a20227b60532427, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -423,7 +423,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5f8d9c2954202488eaf86dc52c3adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gizmos: 0
   sightRadius: 8
+  isGuard: 0
+  isWalk: 0
+  isChase: 0
+  isFollow: 0
+  patrolRange: 8
 --- !u!195 &707721087204816946
 NavMeshAgent:
   m_ObjectHideFlags: 0

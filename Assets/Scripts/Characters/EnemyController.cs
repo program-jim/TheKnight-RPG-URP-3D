@@ -17,9 +17,12 @@ public class EnemyController : MonoBehaviour
     private EnemyStates enemyStates;
     private NavMeshAgent agent;
     private GameObject attackTarget;
+    private Animator anim;
+    private Vector3 wayPoint; 
     private float speed;
 
     [Header("Basic Settings")]
+    public GizmosToDraw gizmos;
     public float sightRadius;
     public bool isGuard;
     public bool hasFoundPlayer
@@ -29,16 +32,42 @@ public class EnemyController : MonoBehaviour
             return FoundPlayer();
         }
     }
+    // Bool with Animator
+    public bool isWalk;
+    public bool isChase;
+    public bool isFollow;
+
+    [Header("Patrol State")]
+    public float patrolRange;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+
         speed = agent.speed;
     }
 
     void Update()
     {
         SwitchStates();
+        SwitchAnimation();
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        switch (gizmos)
+        {
+            case GizmosToDraw.SIGHT_RADIUS:
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireSphere(transform.position, sightRadius);
+                break;
+
+            case GizmosToDraw.PATROL_RANGE:
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawWireSphere(transform.position, patrolRange);
+                break;
+        }
     }
 
     private void SwitchStates()
@@ -47,7 +76,7 @@ public class EnemyController : MonoBehaviour
         if (hasFoundPlayer)
         {
             enemyStates = EnemyStates.CHASE;
-            Debug.Log("Find Player !!!");
+            //Debug.Log("Find Player !!!");
         }
         
         switch (enemyStates)
@@ -65,6 +94,13 @@ public class EnemyController : MonoBehaviour
             case EnemyStates.DEAD:
                 break;
         }
+    }
+
+    private void SwitchAnimation()
+    {
+        anim.SetBool("Walk", isWalk);
+        anim.SetBool("Chase", isChase);
+        anim.SetBool("Follow", isFollow);
     }
 
     private bool FoundPlayer()
@@ -91,17 +127,28 @@ public class EnemyController : MonoBehaviour
         //TODO:Attack target in sight radius
         //TODO:Do with animation
         
+        isWalk = false;
+        isChase = true;
         agent.speed = speed;
         
         if (!hasFoundPlayer)
         {
-
+            isFollow = false;
+            agent.destination = transform.position;
         }
         else
         {
+            isFollow = true;
             agent.destination = attackTarget.transform.position;
-
         }
+    }
+
+    private void GetNewWayPoint()
+    {
+        float randomX = Random.Range(-patrolRange, patrolRange);
+        float randomZ = Random.Range(-patrolRange, patrolRange);
+
+        Vector3 randomPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
     }
 }
 
@@ -111,4 +158,10 @@ public enum EnemyStates
     PATROL,
     CHASE,
     DEAD
+}
+
+public enum GizmosToDraw
+{
+    SIGHT_RADIUS,
+    PATROL_RANGE
 }
