@@ -14,16 +14,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private NavMeshHit hit;
     private EnemyStates enemyStates;
     private NavMeshAgent agent;
     private GameObject attackTarget;
     private Animator anim;
-    private Vector3 wayPoint; 
+    private Vector3 wayPoint;
+    private Vector3 guardPos;
     private float speed;
+    private float remainLookAtTime;
+
+    public GizmosToDraw gizmos;
 
     [Header("Basic Settings")]
-    public GizmosToDraw gizmos;
     public float sightRadius;
+    public float lookAtTime = 3f;
     public bool isGuard;
     public bool hasFoundPlayer
     {
@@ -45,7 +50,22 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
+        guardPos = transform.position;
         speed = agent.speed;
+        remainLookAtTime = lookAtTime;
+    }
+
+    void Start()
+    {
+        if (isGuard)
+        {
+            enemyStates = EnemyStates.GUARD;
+        }
+        else
+        {
+            GetNewWayPoint();
+            enemyStates = EnemyStates.PATROL;
+        }
     }
 
     void Update()
@@ -85,6 +105,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyStates.PATROL:
+                Patrol();
                 break;
 
             case EnemyStates.CHASE:
@@ -134,7 +155,20 @@ public class EnemyController : MonoBehaviour
         if (!hasFoundPlayer)
         {
             isFollow = false;
-            agent.destination = transform.position;
+            
+            if (remainLookAtTime > 0f)
+            {
+                agent.destination = transform.position;
+                remainLookAtTime -= Time.deltaTime;
+            }
+            else if (isGuard)
+            {
+                enemyStates = EnemyStates.GUARD;
+            }
+            else
+            {
+                enemyStates = EnemyStates.PATROL;
+            }
         }
         else
         {
@@ -143,12 +177,41 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void Patrol()
+    {
+        isChase = false;
+        agent.speed = speed * 0.5f;
+
+        // If arriving at patrol point
+        if (Vector3.Distance(wayPoint, transform.position) <= agent.stoppingDistance)
+        {
+            isWalk = false;
+            if (remainLookAtTime > 0)
+            {
+                remainLookAtTime -= Time.deltaTime;
+            }
+            else
+            {
+                GetNewWayPoint();
+            }
+        }
+        else
+        {
+            isWalk = true;
+            agent.destination = wayPoint;
+        }
+    }
+
     private void GetNewWayPoint()
     {
+        remainLookAtTime = lookAtTime;
+        
         float randomX = Random.Range(-patrolRange, patrolRange);
         float randomZ = Random.Range(-patrolRange, patrolRange);
+        Vector3 randomPoint = new Vector3(guardPos.x + randomX, transform.position.y, guardPos.z + randomZ);
 
-        Vector3 randomPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        // May cause some problems
+        wayPoint = NavMesh.SamplePosition(randomPoint, out hit, patrolRange, 1) ? hit.position : transform.position;
     }
 }
 
