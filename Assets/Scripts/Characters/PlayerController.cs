@@ -9,7 +9,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CharacterStates))]
 public class PlayerController : MonoBehaviour
 {
-    public float attackDistance = 1f;
     [HideInInspector] public float distance = 1f;
     
     private NavMeshAgent agent;
@@ -67,7 +66,7 @@ public class PlayerController : MonoBehaviour
         // Change radius of Attack.
         distance = Vector3.Distance(transform.position, attackTarget.transform.position);
 
-        while (distance > attackDistance)
+        while (distance > characterStates.attackData.attackRange)
         {
             agent.destination = attackTarget.transform.position;
             yield return null;

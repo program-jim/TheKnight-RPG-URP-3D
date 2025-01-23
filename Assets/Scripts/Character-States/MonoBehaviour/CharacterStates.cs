@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterStates : MonoBehaviour
 {
     public CharacterData_SO characterData;
+    public AttackData_SO attackData;
 
     #region Read from CharacterData_SO File
 

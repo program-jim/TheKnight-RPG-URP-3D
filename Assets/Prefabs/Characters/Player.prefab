@@ -1175,6 +1175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 4a508a969abb43f408bbf5e23d9ab8b2, type: 2}
+  attackData: {fileID: 11400000, guid: 0396c66b9fd6b4c4a82e7fe29229b025, type: 2}
 --- !u!1 &5723735323552881935
 GameObject:
   m_ObjectHideFlags: 0
