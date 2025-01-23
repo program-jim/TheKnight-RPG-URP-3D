@@ -145,8 +145,6 @@ public class EnemyController : MonoBehaviour
 
     private void ChaseTarget()
     {
-        //TODO:Chase target
-        //TODO:Back to previous state
         //TODO:Attack target in sight radius
         //TODO:Do with animation
         
