@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8343ff367fa6d34eaa9d0895993173d, type: 3}
-  m_Name: Player Data
+  m_Name: Slime Data
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  baseDefence: 5
-  currentDefence: 5
-  baseEntry: 6
-  currentEntry: 56
-  state: 0
+  maxHealth: 30
+  currentHealth: 30
+  baseDefence: 2
+  currentDefence: 2
