@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 707721087204816945}
   - component: {fileID: 707721087204816946}
   - component: {fileID: 707721087204816947}
+  - component: {fileID: 707721087324314385}
   m_Layer: 7
   m_Name: SlimePolyart
   m_TagString: Enemy
@@ -446,13 +447,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmos: 0
-  sightRadius: 8
+  sightRadius: 4
   lookAtTime: 3
   isGuard: 0
   isWalk: 0
   isChase: 0
   isFollow: 0
-  patrolRange: 8
+  patrolRange: 4
+--- !u!114 &707721087324314385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7680683145890208151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b223f1258c5b2594087f111072f67968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 0}
 --- !u!1 &7964552494910783662
 GameObject:
   m_ObjectHideFlags: 0
