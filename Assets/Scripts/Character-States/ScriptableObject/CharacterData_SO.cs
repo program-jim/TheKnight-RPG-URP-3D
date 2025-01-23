@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character States/Character Data")]
+[CreateAssetMenu(fileName = "New Character Data", menuName = "Character States/Character Data")]
 public class CharacterData_SO : ScriptableObject
 {
     [Header("States Info")]
