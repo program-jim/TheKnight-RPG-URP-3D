@@ -352,8 +352,8 @@ GameObject:
   - component: {fileID: 7051673896179581741}
   - component: {fileID: 7374131404896963007}
   - component: {fileID: 707721087204816945}
-  - component: {fileID: 707721087204816947}
   - component: {fileID: 707721087204816946}
+  - component: {fileID: 707721087204816947}
   m_Layer: 7
   m_Name: SlimePolyart
   m_TagString: Enemy
@@ -411,25 +411,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &707721087204816947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7680683145890208151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5f8d9c2954202488eaf86dc52c3adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmos: 0
-  sightRadius: 8
-  isGuard: 0
-  isWalk: 0
-  isChase: 0
-  isFollow: 0
-  patrolRange: 8
 --- !u!195 &707721087204816946
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -452,6 +433,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &707721087204816947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7680683145890208151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5f8d9c2954202488eaf86dc52c3adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gizmos: 0
+  sightRadius: 8
+  lookAtTime: 3
+  isGuard: 0
+  isWalk: 0
+  isChase: 0
+  isFollow: 0
+  patrolRange: 8
 --- !u!1 &7964552494910783662
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ public class CharacterStates : MonoBehaviour
 {
     public CharacterData_SO characterData;
 
+    #region Read from CharacterData_SO File
+
     public int MaxHealth
     {
         get
@@ -24,4 +26,64 @@ public class CharacterStates : MonoBehaviour
             characterData.maxHealth = value;
         }
     }
+
+    public int CurrentHealth
+    {
+        get
+        {
+            if (characterData != null)
+            {
+                return characterData.currentHealth;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        set
+        {
+            characterData.currentHealth = value;
+        }
+    }
+
+    public int BaseDefence
+    {
+        get
+        {
+            if (characterData != null)
+            {
+                return characterData.baseDefence;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        set
+        {
+            characterData.baseDefence = value;
+        }
+    }
+
+    public int CurrentDefence
+    {
+        get
+        {
+            if (characterData != null)
+            {
+                return characterData.currentDefence;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        set
+        {
+            characterData.currentDefence = value;
+        }
+    }
+
+    #endregion
+
 }
