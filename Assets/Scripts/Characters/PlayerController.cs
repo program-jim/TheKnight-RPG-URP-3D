@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CharacterStates))]
 public class PlayerController : MonoBehaviour
 {
     public float attackDistance = 1f;

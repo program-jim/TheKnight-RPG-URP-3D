@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CharacterStates))]
 public class EnemyController : MonoBehaviour
 {
     public EnemyStates EnemyStates
