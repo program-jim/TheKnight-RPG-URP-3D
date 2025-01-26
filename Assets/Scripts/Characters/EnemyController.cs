@@ -19,11 +19,13 @@ public class EnemyController : MonoBehaviour
     private NavMeshHit hit;
     private EnemyStates enemyStates;
     private NavMeshAgent agent;
+    private Collider coll;
     private GameObject attackTarget;
     private Animator anim;
+    private CharacterStates characterStates;
     private Vector3 wayPoint;
     private Vector3 guardPos;
-    private CharacterStates characterStates;
+    private Quaternion guardRotation;
     private float speed;
     private float remainLookAtTime;
     private float lastAttackTime;
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
     public bool isWalk;
     public bool isChase;
     public bool isFollow;
+    public bool isDead;
 
     [Header("Patrol State")]
     public float patrolRange;
@@ -52,10 +55,12 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        coll = GetComponent<Collider>();
         anim = GetComponent<Animator>();
         characterStates = GetComponent<CharacterStates>();
 
         guardPos = transform.position;
+        guardRotation = transform.rotation;
         speed = agent.speed;
         remainLookAtTime = lookAtTime;
     }
@@ -75,6 +80,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        CheckDeath();
         SwitchStates();
         SwitchAnimation();
 
@@ -99,8 +105,13 @@ public class EnemyController : MonoBehaviour
 
     private void SwitchStates()
     {
+        if (isDead)
+        {
+            enemyStates = EnemyStates.DEAD;
+        }
+
         // Switch to CHASE after finding Player.
-        if (hasFoundPlayer)
+        else if (hasFoundPlayer)
         {
             enemyStates = EnemyStates.CHASE;
             //Debug.Log("Find Player !!!");
@@ -109,6 +120,7 @@ public class EnemyController : MonoBehaviour
         switch (enemyStates)
         {
             case EnemyStates.GUARD:
+                GuardMode();
                 break;
 
             case EnemyStates.PATROL:
@@ -120,6 +132,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyStates.DEAD:
+                GoToDie();
                 break;
         }
     }
@@ -130,6 +143,15 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Chase", isChase);
         anim.SetBool("Follow", isFollow);
         anim.SetBool("Critical", characterStates.isCritical);
+        anim.SetBool("Death", isDead);
+    }
+
+    private void CheckDeath()
+    {
+        if (characterStates.CurrentHealth == 0)
+        {
+            isDead = true;
+        }
     }
 
     private bool FoundPlayer()
@@ -147,6 +169,24 @@ public class EnemyController : MonoBehaviour
 
         attackTarget = null;
         return false;
+    }
+
+    private void GuardMode()
+    {
+        isChase = false;
+
+        if (transform.position != guardPos)
+        {
+            isWalk = true;
+            agent.isStopped = false;
+            agent.destination = guardPos;
+
+            if (Vector3.SqrMagnitude(guardPos - transform.position) <= agent.stoppingDistance)
+            {
+                isWalk = false;
+                transform.rotation = Quaternion.Lerp(transform.rotation, guardRotation, 0.01f);
+            }
+        }
     }
 
     private void ChaseTarget()
@@ -249,6 +289,13 @@ public class EnemyController : MonoBehaviour
             // Do with skill attack animation.
             anim.SetTrigger("Skill");
         }
+    }
+
+    private void GoToDie()
+    {
+        coll.enabled = false;
+        agent.enabled = false;
+        Destroy(gameObject, 2f);
     }
 
     private bool TargetInAttackRange()
