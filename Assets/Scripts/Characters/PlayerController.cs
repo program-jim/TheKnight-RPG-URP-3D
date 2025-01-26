@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         }
 
         attackTarget = target;
+        characterStates.isCritical = UnityEngine.Random.value < characterStates.attackData.criticalChance;
         StartCoroutine(MoveToAttackTarget());
     }
 
@@ -83,5 +84,14 @@ public class PlayerController : MonoBehaviour
             //TODO: Reset CD Time
             lastAttackTime = characterStates.attackData.coolDown;
         }
+    }
+
+    /// <summary>
+    /// Hit others (Animation Event Function).
+    /// </summary>
+    public void Hit()
+    {
+        var targetStates = attackTarget.GetComponent<CharacterStates>();
+        targetStates.TakeDamage(characterStates, targetStates);
     }
 }

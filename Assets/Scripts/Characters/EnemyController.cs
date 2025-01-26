@@ -231,7 +231,6 @@ public class EnemyController : MonoBehaviour
         float randomZ = Random.Range(-patrolRange, patrolRange);
         Vector3 randomPoint = new Vector3(guardPos.x + randomX, transform.position.y, guardPos.z + randomZ);
 
-        // May cause some problems
         wayPoint = NavMesh.SamplePosition(randomPoint, out hit, patrolRange, 1) ? hit.position : transform.position;
     }
 
