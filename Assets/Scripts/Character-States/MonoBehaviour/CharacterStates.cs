@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,6 +85,20 @@ public class CharacterStates : MonoBehaviour
         {
             characterData.currentDefence = value;
         }
+    }
+
+    #endregion
+
+    #region Character Combat
+
+    public void TakeDamage(CharacterStates attacker, CharacterStates defener)
+    {
+        int damage = attacker.CurrentDamage() - defener.CurrentDefence;
+    }
+
+    private int CurrentDamage()
+    {
+        throw new NotImplementedException();
     }
 
     #endregion

@@ -77,10 +77,11 @@ public class PlayerController : MonoBehaviour
 
         if (lastAttackTime < 0f)
         {
+            anim.SetBool("Critical", characterStates.isCritical);
             anim.SetTrigger("Attack");
 
             //TODO: Reset CD Time
-            lastAttackTime = 0.5f;
+            lastAttackTime = characterStates.attackData.coolDown;
         }
     }
 }
