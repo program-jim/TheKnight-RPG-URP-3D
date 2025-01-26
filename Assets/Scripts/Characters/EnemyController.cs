@@ -150,10 +150,7 @@ public class EnemyController : MonoBehaviour
     }
 
     private void ChaseTarget()
-    {
-        //TODO:Attack target in sight radius
-        //TODO:Do with animation
-        
+    {      
         isWalk = false;
         isChase = true;
         agent.speed = speed;
