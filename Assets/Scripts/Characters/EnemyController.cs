@@ -274,6 +274,18 @@ public class EnemyController : MonoBehaviour
             return false;
         }
     }
+
+    /// <summary>
+    /// Hit others (Animation Event Function).
+    /// </summary>
+    public void Hit()
+    {
+        if (attackTarget != null)
+        {
+            var targetStates = attackTarget.GetComponent<CharacterStates>();
+            targetStates.TakeDamage(characterStates, targetStates);
+        }
+    }
 }
 
 public enum EnemyStates
