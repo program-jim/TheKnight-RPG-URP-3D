@@ -23,8 +23,10 @@ public class EnemyController : MonoBehaviour
     private Animator anim;
     private Vector3 wayPoint;
     private Vector3 guardPos;
+    private CharacterStates characterStates;
     private float speed;
     private float remainLookAtTime;
+    private float lastAttackTime;
 
     public GizmosToDraw gizmos;
 
@@ -51,6 +53,7 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        characterStates = GetComponent<CharacterStates>();
 
         guardPos = transform.position;
         speed = agent.speed;
@@ -74,6 +77,8 @@ public class EnemyController : MonoBehaviour
     {
         SwitchStates();
         SwitchAnimation();
+
+        lastAttackTime -= Time.deltaTime;
     }
 
     void OnDrawGizmosSelected()
@@ -124,6 +129,7 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Walk", isWalk);
         anim.SetBool("Chase", isChase);
         anim.SetBool("Follow", isFollow);
+        anim.SetBool("Critical", characterStates.isCritical);
     }
 
     private bool FoundPlayer()
@@ -173,8 +179,26 @@ public class EnemyController : MonoBehaviour
         else
         {
             isFollow = true;
+            agent.isStopped = false;
             agent.destination = attackTarget.transform.position;
         }
+
+        if (TargetInAttackRange() || TargetInSkillRange())
+        {
+            isFollow = false;
+            agent.isStopped = true;
+
+            if (lastAttackTime < 0f)
+            {
+                lastAttackTime = characterStates.attackData.coolDown;
+
+                // Critical damage
+                characterStates.isCritical = Random.value < characterStates.attackData.criticalChance;
+                // Executing attack
+                Attack();
+            }
+        }
+
     }
 
     private void Patrol()
@@ -212,6 +236,47 @@ public class EnemyController : MonoBehaviour
 
         // May cause some problems
         wayPoint = NavMesh.SamplePosition(randomPoint, out hit, patrolRange, 1) ? hit.position : transform.position;
+    }
+
+    private void Attack()
+    {
+        transform.LookAt(attackTarget.transform);
+
+        if (TargetInAttackRange())
+        {
+            // Do with close attack animation.
+            anim.SetTrigger("Attack");
+        }
+        
+        if (TargetInSkillRange())
+        {
+            // Do with skill attack animation.
+            anim.SetTrigger("Skill");
+        }
+    }
+
+    private bool TargetInAttackRange()
+    {
+        if (attackTarget != null)
+        {
+            return Vector3.Distance(transform.position, attackTarget.transform.position) <= characterStates.attackData.attackRange;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool TargetInSkillRange()
+    {
+        if (attackTarget != null)
+        {
+            return Vector3.Distance(transform.position, attackTarget.transform.position) <= characterStates.attackData.skillRange;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
