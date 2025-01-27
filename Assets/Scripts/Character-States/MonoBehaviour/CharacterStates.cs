@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// MonoBehaviour which shows data of a character's states.
+/// </summary>
 public class CharacterStates : MonoBehaviour
 {
     public CharacterData_SO characterData;

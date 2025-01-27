@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Controller of the Player.
+/// </summary>
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CharacterStates))]

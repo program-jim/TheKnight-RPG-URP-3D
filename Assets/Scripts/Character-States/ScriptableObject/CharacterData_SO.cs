@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// ScriptableObject which stores data of a character.
 /// </summary>
 [CreateAssetMenu(fileName = "New Character Data", menuName = "Character States/Character Data")]
 public class CharacterData_SO : ScriptableObject
