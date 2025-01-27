@@ -13,17 +13,8 @@ using UnityEngine.Events;
 /// <summary>
 /// Manage the input controll of PC's mouse. 
 /// </summary>
-public class MouseManager : MonoBehaviour
+public class MouseManager : SingletonMono<MouseManager>
 {
-    public static MouseManager Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
-    private static MouseManager instance;
-
     public event Action<Vector3> OnMouseClicked;
     public event Action<GameObject> OnEnemyClicked;
 
@@ -42,16 +33,10 @@ public class MouseManager : MonoBehaviour
     private Ray ray;
     private RaycastHit hitInfo;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
+        base.Awake();
+        DontDestroyOnLoad(this);
     }
 
     private void Update()
