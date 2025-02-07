@@ -9,7 +9,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CharacterStates))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IEndGameObserver
 {
     public EnemyStates EnemyStates
     {
@@ -50,7 +50,9 @@ public class EnemyController : MonoBehaviour
     public bool isWalk;
     public bool isChase;
     public bool isFollow;
+    public bool isWin;
     public bool isDead;
+    public bool isPlayerDead;
 
     [Header("Patrol State")]
     public float patrolRange;
@@ -68,6 +70,22 @@ public class EnemyController : MonoBehaviour
         remainLookAtTime = lookAtTime;
     }
 
+    //FIXME: CHANGE IN LOADING SCENE
+    //private void OnEnable()
+    //{
+    //    GameManager.Instance.AddObserver(this);
+    //}
+
+    private void OnDisable()
+    {
+        if (!GameManager.isInitialized)
+        {
+            return;
+        }
+        
+        GameManager.Instance.RemoveObserver(this);
+    }
+
     void Start()
     {
         if (isGuard)
@@ -79,15 +97,23 @@ public class EnemyController : MonoBehaviour
             GetNewWayPoint();
             enemyStates = EnemyStates.PATROL;
         }
+
+        //FIXME: CHANGE IN LOADING SCENE.
+        GameManager.Instance.AddObserver(this);
     }
 
     void Update()
     {
         CheckDeath();
-        SwitchStates();
-        SwitchAnimation();
 
-        lastAttackTime -= Time.deltaTime;
+        if (!isPlayerDead)
+        {
+            SwitchStates();
+            SwitchAnimation();
+
+            lastAttackTime -= Time.deltaTime;
+        }
+        
     }
 
     void OnDrawGizmosSelected()
@@ -146,6 +172,7 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Chase", isChase);
         anim.SetBool("Follow", isFollow);
         anim.SetBool("Critical", characterStates.isCritical);
+        anim.SetBool("Win", isWin);
         anim.SetBool("Death", isDead);
     }
 
@@ -335,6 +362,20 @@ public class EnemyController : MonoBehaviour
             var targetStates = attackTarget.GetComponent<CharacterStates>();
             targetStates.TakeDamage(characterStates, targetStates);
         }
+    }
+
+    public void EndNotify()
+    {
+        //Winner Animation
+        //Stop all move
+        //Stop NavMeshAgent
+
+        isWin = true;
+        isPlayerDead = true;
+        isChase = false;
+        isWalk = false;
+        attackTarget = null;
+
     }
 }
 
