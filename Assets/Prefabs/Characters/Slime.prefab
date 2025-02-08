@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 2182231944078546504}
   - component: {fileID: 8200106597046101958}
   - component: {fileID: 8200106597046101957}
-  - component: {fileID: 8200106597046101956}
   - component: {fileID: 8200106597186569446}
+  - component: {fileID: 8200106597046101956}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Enemy
@@ -156,6 +156,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8200106597186569446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335794158807139936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b223f1258c5b2594087f111072f67968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateData: {fileID: 11400000, guid: 85af4dee12f747749885ba50ef433009, type: 2}
+  characterData: {fileID: 0}
+  attackData: {fileID: 11400000, guid: 5b23d5208b78fd744b3db075bec9d7f9, type: 2}
+  isCritical: 0
 --- !u!114 &8200106597046101956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,22 +195,6 @@ MonoBehaviour:
   isDead: 0
   isPlayerDead: 0
   patrolRange: 4
---- !u!114 &8200106597186569446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335794158807139936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b223f1258c5b2594087f111072f67968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateData: {fileID: 11400000, guid: 85af4dee12f747749885ba50ef433009, type: 2}
-  characterData: {fileID: 0}
-  attackData: {fileID: 11400000, guid: 5b23d5208b78fd744b3db075bec9d7f9, type: 2}
-  isCritical: 0
 --- !u!1 &1628389221401861977
 GameObject:
   m_ObjectHideFlags: 0
