@@ -123,7 +123,7 @@ public class CharacterStates : MonoBehaviour
         if (isCritical)
         {
             coreDamage *= attackData.criticalMultiplier;
-            Debug.Log("Critical damage! " + coreDamage);
+            Debug.Log("Critical damage! " + coreDamage + "\nfrom " + gameObject.name);
         }
 
         return (int)coreDamage;

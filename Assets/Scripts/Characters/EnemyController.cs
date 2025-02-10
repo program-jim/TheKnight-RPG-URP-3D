@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
     private EnemyStates enemyStates;
     private NavMeshAgent agent;
     private Collider coll;
-    private GameObject attackTarget;
+    protected GameObject attackTarget;
     private Animator anim;
     private CharacterStates characterStates;
     private Vector3 wayPoint;
