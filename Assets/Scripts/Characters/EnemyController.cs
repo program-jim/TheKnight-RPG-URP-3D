@@ -324,7 +324,8 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
     private void GoToDie()
     {
         coll.enabled = false;
-        agent.enabled = false;
+        // agent.enabled = false;
+        agent.radius = 0f;
         Destroy(gameObject, 2f);
     }
 
