@@ -22,6 +22,6 @@ public class Grunt : EnemyController
 
         attackTarget.GetComponent<NavMeshAgent>().isStopped = true;
         attackTarget.GetComponent<NavMeshAgent>().velocity = direction * kickForce;
-        Debug.Log("Grunt Kick Off Player !!!");
+        attackTarget.GetComponent<Animator>().SetTrigger("Dizzy");
     }
 }
