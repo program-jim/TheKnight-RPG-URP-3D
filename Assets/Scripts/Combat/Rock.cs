@@ -19,7 +19,7 @@ public class Rock : MonoBehaviour
 
     public void FlyToTarget()
     {
-        direction = (target.transform.position - transform.position).normalized;
-
+        direction = (target.transform.position - transform.position + Vector3.up).normalized;
+        rb.AddForce(direction * force, ForceMode.Impulse);
     }
 }
