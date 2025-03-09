@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Rock : MonoBehaviour
 {
-    private RockStates rockStates;
+    [HideInInspector] public RockStates rockStates;
     private Rigidbody rb;
 
     [Header("Basic Settings")]
@@ -17,10 +17,16 @@ public class Rock : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rockStates = RockStates.HitPlayer;
         FlyToTarget();
     }
 
     private void OnCollisionEnter(Collision collision)
+    {
+        SwitchState(collision);
+    }
+
+    private void SwitchState(Collision collision)
     {
         switch (rockStates)
         {
@@ -34,6 +40,16 @@ public class Rock : MonoBehaviour
                     collision.gameObject.GetComponent<CharacterStates>().TakeDamage(damage, collision.gameObject.GetComponent<CharacterStates>());
 
                     rockStates = RockStates.HitNothing;
+                }
+                break;
+
+            case RockStates.HitEnemy:
+                if (collision.gameObject.GetComponent<Golem>())
+                {
+                    var collisionStates = collision.gameObject.GetComponent<CharacterStates>();
+                    collisionStates.TakeDamage(damage, collisionStates);
+
+                    Destroy(gameObject);
                 }
                 break;
         }
