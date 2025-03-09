@@ -7,7 +7,14 @@ public class Golem : EnemyController
 {
     [Header("Skill")]
     public float kickForce = 25f;
+    public GameObject rockPrefab;
+    public Transform handPos;
 
+    #region Animation Events
+
+    /// <summary>
+    /// Animation Event to kick off.
+    /// </summary>
     public void KickOff()
     {
         if (attackTarget != null && transform.IsFacingTarget(attackTarget.transform))
@@ -24,4 +31,19 @@ public class Golem : EnemyController
             targetStates.TakeDamage(characterStates, targetStates);
         }
     }
+
+    /// <summary>
+    /// Animation Event to throw rock.
+    /// </summary>
+    public void ThrowRock()
+    {
+        if (attackTarget != null)
+        {
+            var rock = Instantiate(rockPrefab, handPos.position, Quaternion.identity);
+            rock.GetComponent<Rock>().target = attackTarget;
+        }
+    }
+
+    #endregion
+
 }

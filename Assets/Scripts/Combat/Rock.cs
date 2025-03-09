@@ -19,6 +19,11 @@ public class Rock : MonoBehaviour
 
     public void FlyToTarget()
     {
+        if (target == null)
+        {
+            target = FindObjectOfType<PlayerController>().gameObject;
+        }
+        
         direction = (target.transform.position - transform.position + Vector3.up).normalized;
         rb.AddForce(direction * force, ForceMode.Impulse);
     }
