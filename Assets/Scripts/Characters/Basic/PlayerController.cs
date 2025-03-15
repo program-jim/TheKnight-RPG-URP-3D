@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
             if (attackTarget.GetComponent<Rock>() && attackTarget.gameObject.GetComponent<Rock>().rockStates == RockStates.HitNothing)
             {
                 attackTarget.gameObject.GetComponent<Rock>().rockStates = RockStates.HitEnemy;
-
+                attackTarget.GetComponent<Rigidbody>().velocity = Vector3.one;
                 attackTarget.GetComponent<Rigidbody>().AddForce(transform.forward * 20, ForceMode.Impulse);
             }
         }

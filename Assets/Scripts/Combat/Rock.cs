@@ -17,8 +17,19 @@ public class Rock : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.one;
+
         rockStates = RockStates.HitPlayer;
         FlyToTarget();
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb.velocity.sqrMagnitude < 1f)
+        {
+            rockStates = RockStates.HitNothing;
+        }
+        //Debug.Log(rb.velocity.sqrMagnitude);
     }
 
     private void OnCollisionEnter(Collision collision)
