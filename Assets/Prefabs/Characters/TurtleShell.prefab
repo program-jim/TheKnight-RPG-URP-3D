@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 6253734590504711888}
   - component: {fileID: 6253734590504711889}
   - component: {fileID: 6253734590504711902}
+  - component: {fileID: 6061571628581635351}
   m_Layer: 0
   m_Name: TurtleShell
   m_TagString: Enemy
@@ -991,6 +992,22 @@ MonoBehaviour:
   isDead: 0
   isPlayerDead: 0
   patrolRange: 5
+--- !u!114 &6061571628581635351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253734590504711903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804ff1724accb2443968b8ce48816eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUIPrefab: {fileID: 2656378489363110021, guid: 3223be87dc7de0f489573f96867ab5aa, type: 3}
+  barPoint: {fileID: 2580717646576140940}
+  isAlwaysVisible: 0
+  visibleTime: 0
 --- !u!1 &6857062835279409489
 GameObject:
   m_ObjectHideFlags: 0

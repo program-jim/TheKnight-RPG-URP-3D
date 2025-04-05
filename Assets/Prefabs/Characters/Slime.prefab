@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 8200106597046101957}
   - component: {fileID: 8200106597186569446}
   - component: {fileID: 8200106597046101956}
+  - component: {fileID: 313648444682081306}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Enemy
@@ -196,6 +197,22 @@ MonoBehaviour:
   isDead: 0
   isPlayerDead: 0
   patrolRange: 4
+--- !u!114 &313648444682081306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335794158807139936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804ff1724accb2443968b8ce48816eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUIPrefab: {fileID: 2656378489363110021, guid: 3223be87dc7de0f489573f96867ab5aa, type: 3}
+  barPoint: {fileID: 7304730465302435315}
+  isAlwaysVisible: 0
+  visibleTime: 0
 --- !u!1 &1628389221401861977
 GameObject:
   m_ObjectHideFlags: 0

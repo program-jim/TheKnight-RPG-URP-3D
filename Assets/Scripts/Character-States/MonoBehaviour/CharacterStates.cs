@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class CharacterStates : MonoBehaviour
 {
+    public event Action<int, int> UpdateHealthBarOnAttack;
+    
     public CharacterData_SO templateData;
     [HideInInspector] public CharacterData_SO characterData;
     public AttackData_SO attackData;
@@ -113,6 +115,7 @@ public class CharacterStates : MonoBehaviour
             defener.GetComponent<Animator>().SetTrigger("Hit");
         }
         // TODO: Update UI
+        UpdateHealthBarOnAttack?.Invoke(CurrentHealth, MaxHealth);
         // TODO: Experience Update
     }
 
@@ -120,7 +123,7 @@ public class CharacterStates : MonoBehaviour
     {
         int currentDamage = Mathf.Max(damage - defener.CurrentDefence, 0);
         CurrentHealth = Mathf.Max(CurrentHealth - currentDamage, 0);
-
+        UpdateHealthBarOnAttack?.Invoke(CurrentHealth, MaxHealth);
     }
 
     private int CurrentDamage()

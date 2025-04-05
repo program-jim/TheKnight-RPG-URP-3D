@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 8081072504325523770}
   - component: {fileID: 8081072504325523771}
   - component: {fileID: 8081072504325523768}
+  - component: {fileID: 6787184378925647270}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Enemy
@@ -453,6 +454,22 @@ MonoBehaviour:
   kickForce: 30
   rockPrefab: {fileID: 9052213492346067105, guid: 63e9df454932f3c499e4f3e001ebbe58, type: 3}
   handPos: {fileID: 8081072504060852827}
+--- !u!114 &6787184378925647270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8081072504325523775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804ff1724accb2443968b8ce48816eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUIPrefab: {fileID: 2656378489363110021, guid: 3223be87dc7de0f489573f96867ab5aa, type: 3}
+  barPoint: {fileID: 1950292640918447114}
+  isAlwaysVisible: 0
+  visibleTime: 0
 --- !u!1 &8081072504347130518
 GameObject:
   m_ObjectHideFlags: 0
