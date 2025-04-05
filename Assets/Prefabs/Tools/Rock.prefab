@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffc23d43a5e4f046a6d327e7af22055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockStates: 0
   force: 25
   damage: 8
   target: {fileID: 0}
+  breakEffect: {fileID: 8289381358921737594, guid: 7d52dad0af9cf164a8d195f11cf57286, type: 3}

@@ -13,6 +13,7 @@ public class Rock : MonoBehaviour
     public int damage;
     public GameObject target;
     private Vector3 direction;
+    public GameObject breakEffect;
 
     private void Start()
     {
@@ -59,7 +60,7 @@ public class Rock : MonoBehaviour
                 {
                     var collisionStates = collision.gameObject.GetComponent<CharacterStates>();
                     collisionStates.TakeDamage(damage, collisionStates);
-
+                    Instantiate(breakEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
                 break;
