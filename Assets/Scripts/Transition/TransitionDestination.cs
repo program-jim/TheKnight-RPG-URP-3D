@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class TransitionDestination : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public DestinationType DestinationType;
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public enum DestinationType
+{
+    ENTER, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
 }

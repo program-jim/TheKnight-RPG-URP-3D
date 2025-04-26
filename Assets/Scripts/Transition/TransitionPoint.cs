@@ -8,7 +8,7 @@ public class TransitionPoint : MonoBehaviour
     public string sceneName;
     public TransitionType transitionType;
 
-
+    public DestinationType destinationType;
 }
 
 public enum TransitionType
