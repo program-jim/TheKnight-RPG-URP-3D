@@ -278,20 +278,6 @@
                 },
                 "m_SlotId": 2
             }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "f1fe891ea6a8457a892e024bcfb7046e"
-                },
-                "m_SlotId": 3
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "82d90c97e3ce43538affc6deeda3a1bc"
-                },
-                "m_SlotId": 1
-            }
         }
     ],
     "m_VertexContext": {
