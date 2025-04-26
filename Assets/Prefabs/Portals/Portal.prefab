@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: Destination Point
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 6172058370053436963}
   - component: {fileID: 6172058370053436988}
   - component: {fileID: 6172058370053436989}
-  - component: {fileID: 6172058370053436990}
+  - component: {fileID: 5890579731165745733}
   - component: {fileID: 6172058370053436962}
   m_Layer: 0
   m_Name: Portal
@@ -128,8 +128,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6172058370053436990
-MeshCollider:
+--- !u!65 &5890579731165745733
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,10 +138,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6172058370053436962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fb1c8b00a63a24fb9198f4bf6f9ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
-  transitionType: 0
+  sceneName: Level02
+  transitionType: 1
   destinationType: 0
