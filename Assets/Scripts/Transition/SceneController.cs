@@ -12,7 +12,7 @@ public class SceneController : SingletonMono<SceneController>
         switch (transitionPoint.transitionType)
         {
             case TransitionType.SameScene:
-                
+                StartCoroutine(Transition(SceneManager.GetActiveScene().name, transitionPoint.destinationType));
                 break;
 
             case TransitionType.DifferentScene:
