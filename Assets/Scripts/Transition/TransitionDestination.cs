@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransitionDestination : MonoBehaviour
 {
-    public DestinationType DestinationType;
+    public DestinationType destinationType;
 }
 
 public enum DestinationType

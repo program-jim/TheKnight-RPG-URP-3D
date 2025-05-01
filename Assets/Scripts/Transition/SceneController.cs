@@ -23,15 +23,21 @@ public class SceneController : SingletonMono<SceneController>
     IEnumerator Transition(string sceneName, DestinationType destinationType)
     {
         player = GameManager.Instance.playerStates.gameObject;
-        player.transform.SetPositionAndRotation();
-
+        player.transform.SetPositionAndRotation(GetTransitionDestination(destinationType).transform.position, GetTransitionDestination(destinationType).transform.rotation);
+        yield return null;
     }
 
     private TransitionDestination GetTransitionDestination(DestinationType destinationType)
     {
         var entrances = FindObjectsOfType<TransitionDestination>();
 
-
+        foreach (var item in entrances)
+        {
+            if (item.destinationType == destinationType)
+            {
+                return item;
+            }
+        }
 
         return null;
     }
