@@ -13,9 +13,9 @@ public class TransitionPoint : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && canTrans)
+        if (Input.GetKeyDown(KeyCode.E) && canTrans)
         {
-            Debug.Log("Enter");
+            Debug.Log("E");
 
             //TODO: SceneController transition
             SceneController.Instance.TransitionToDestination(this);
