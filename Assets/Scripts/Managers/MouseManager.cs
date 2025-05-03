@@ -93,6 +93,11 @@ public class MouseManager : SingletonMono<MouseManager>
             {
                 OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
             }
+
+            if (hitInfo.collider.gameObject.CompareTag("Portal"))
+            {
+                OnMouseClicked?.Invoke(hitInfo.point);
+            }
         }
     }
 }

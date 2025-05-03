@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed55175f1814b947b3ec56eac898992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestinationType: 0
+  destinationType: 0
 --- !u!1 &6172058370053436991
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 6172058370053436962}
   m_Layer: 0
   m_Name: Portal
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
