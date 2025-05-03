@@ -18,6 +18,7 @@ public class TransitionPoint : MonoBehaviour
             Debug.Log("Enter");
 
             //TODO: SceneController transition
+            SceneController.Instance.TransitionToDestination(this);
         }
     }
 
