@@ -68,6 +68,10 @@ public class MouseManager : SingletonMono<MouseManager>
                 case "Enemy":
                     Cursor.SetCursor(attack, cursorOffset, cursorMode);
                     break;
+
+                case "Portal":
+                    Cursor.SetCursor(doorway, cursorOffset, cursorMode);
+                    break;
             }
         }
     }
