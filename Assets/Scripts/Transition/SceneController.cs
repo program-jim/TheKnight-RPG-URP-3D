@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : SingletonMono<SceneController>
 {
+    public GameObject playerPrefab;
     private GameObject player;
     private NavMeshAgent playerAgent;
 
@@ -26,16 +27,27 @@ public class SceneController : SingletonMono<SceneController>
 
     IEnumerator Transition(string sceneName, DestinationType destinationType)
     {
-        player = GameManager.Instance.playerStates.gameObject;
-        playerAgent = player.GetComponent<NavMeshAgent>();
+        // TODO: Save Data.
+        
+        if (sceneName != SceneManager.GetActiveScene().name)
+        {
+            yield return SceneManager.LoadSceneAsync(sceneName);
+            yield return Instantiate(playerPrefab, GetTransitionDestination(destinationType).transform.position, GetTransitionDestination(destinationType).transform.rotation);
+            yield break;
+        }
+        else
+        {
+            player = GameManager.Instance.playerStates.gameObject;
+            playerAgent = player.GetComponent<NavMeshAgent>();
 
-        // Turn off player's agent.
-        playerAgent.enabled = false;
-        player.transform.SetPositionAndRotation(GetTransitionDestination(destinationType).transform.position, GetTransitionDestination(destinationType).transform.rotation);
+            // Turn off player's agent.
+            playerAgent.enabled = false;
+            player.transform.SetPositionAndRotation(GetTransitionDestination(destinationType).transform.position, GetTransitionDestination(destinationType).transform.rotation);
 
-        // Turn on player's agent back.
-        playerAgent.enabled = true;
-        yield return null;
+            // Turn on player's agent back.
+            playerAgent.enabled = true;
+            yield return null;
+        }
     }
 
     private TransitionDestination GetTransitionDestination(DestinationType destinationType)
