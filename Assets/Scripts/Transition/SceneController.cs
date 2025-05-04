@@ -10,7 +10,6 @@ public class SceneController : SingletonMono<SceneController>
     private GameObject player;
     private NavMeshAgent playerAgent;
 
-
     public void TransitionToDestination(TransitionPoint transitionPoint)
     {
         switch (transitionPoint.transitionType)
