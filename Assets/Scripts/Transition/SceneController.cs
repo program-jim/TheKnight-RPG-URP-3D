@@ -19,6 +19,7 @@ public class SceneController : SingletonMono<SceneController>
                 break;
 
             case TransitionType.DifferentScene:
+                StartCoroutine(Transition(transitionPoint.sceneName, transitionPoint.destinationType));
                 break;
         }
     }
