@@ -10,6 +10,12 @@ public class SceneController : SingletonMono<SceneController>
     private GameObject player;
     private NavMeshAgent playerAgent;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
+
     public void TransitionToDestination(TransitionPoint transitionPoint)
     {
         switch (transitionPoint.transitionType)
