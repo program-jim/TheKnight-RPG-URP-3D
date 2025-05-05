@@ -16,7 +16,7 @@ public class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
             return instance;
         }
     }
-    public static bool isInitialized
+    public static bool IsInitialized
     {
         get
         {

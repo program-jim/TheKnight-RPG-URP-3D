@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
 
     private void OnDisable()
     {
-        if (!GameManager.isInitialized)
+        if (!GameManager.IsInitialized)
         {
             return;
         }
