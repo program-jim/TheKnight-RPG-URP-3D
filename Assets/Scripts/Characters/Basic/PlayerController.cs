@@ -46,6 +46,17 @@ public class PlayerController : MonoBehaviour
         lastAttackTime -= Time.deltaTime;
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        MouseManager.Instance.OnMouseClicked -= MoveToTarget;
+        MouseManager.Instance.OnEnemyClicked -= EventAttack;
+    }
+
     public void MoveToTarget(Vector3 target)
     {
         StopAllCoroutines();
