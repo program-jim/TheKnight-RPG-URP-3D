@@ -10,6 +10,12 @@ public class GameManager : SingletonMono<GameManager>
     public CharacterStates playerStates;
     public List<IEndGameObserver> endGameObservers = new List<IEndGameObserver>();
 
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
+
     public void RegisterPlayer(CharacterStates player)
     {
         playerStates = player;
