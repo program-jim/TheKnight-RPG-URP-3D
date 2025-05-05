@@ -34,11 +34,13 @@ public class SaveManager : SingletonMono<SaveManager>
 
     public void SavePlayerData()
     {
+        Debug.Log("Save Player Data.");
         Save(GameManager.Instance.playerStates.characterData.name, GameManager.Instance.playerStates.characterData);
     }
 
     public void LoadPlayerData()
     {
+        Debug.Log("Load Player Data.");
         Load(GameManager.Instance.playerStates.characterData.name, GameManager.Instance.playerStates.characterData);
     }
 }
