@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class GameManager : SingletonMono<GameManager>
 {
-    public CharacterStates playerStates;
+    [HideInInspector] public CharacterStates playerStates;
     public List<IEndGameObserver> endGameObservers = new List<IEndGameObserver>();
 
     protected override void Awake()
