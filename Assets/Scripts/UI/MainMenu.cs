@@ -27,8 +27,8 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Deleted All PlayerPrefs data !!!");
 
         // Scene switching
-
-
+        Debug.Log("Transfering To First Level !!!");
+        SceneController.Instance.TransitionToFirstLevel();
     }
 
     public void ContinueGame()

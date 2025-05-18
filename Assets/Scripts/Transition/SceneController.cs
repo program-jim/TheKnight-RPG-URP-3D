@@ -10,10 +10,19 @@ public class SceneController : SingletonMono<SceneController>
     private GameObject player;
     private NavMeshAgent playerAgent;
 
+    public string firstSceneName = "Game";
+    public Vector3 startGameScenePlayerPosition = new Vector3(-30.1f, 0f, -30.72f);
+    public Vector3 startGameScenePlayerRotationEulers = Vector3.zero;
+
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
+    }
+
+    public void TransitionToFirstLevel()
+    {
+        StartCoroutine(LoadLevel(firstSceneName));
     }
 
     public void TransitionToDestination(TransitionPoint transitionPoint)
@@ -68,7 +77,13 @@ public class SceneController : SingletonMono<SceneController>
         }
         
         yield return SceneManager.LoadSceneAsync(scene);
-        yield return null;
+
+        // TODO: The position to get can be replaced with GameManager.Instance.GetEntrance()
+        yield return player = Instantiate(playerPrefab, startGameScenePlayerPosition, Quaternion.Euler(startGameScenePlayerRotationEulers));
+
+        // Save player data
+        SaveManager.Instance.SavePlayerData();
+        yield break;
     }
 
     private TransitionDestination GetTransitionDestination(DestinationType destinationType)
