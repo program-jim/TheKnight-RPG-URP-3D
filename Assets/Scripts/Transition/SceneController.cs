@@ -60,6 +60,17 @@ public class SceneController : SingletonMono<SceneController>
         }
     }
 
+    public IEnumerator LoadLevel(string scene)
+    {
+        if (scene == null)
+        {
+            yield break;
+        }
+        
+        yield return SceneManager.LoadSceneAsync(scene);
+        yield return null;
+    }
+
     private TransitionDestination GetTransitionDestination(DestinationType destinationType)
     {
         var entrances = FindObjectsOfType<TransitionDestination>();
