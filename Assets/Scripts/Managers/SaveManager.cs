@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : SingletonMono<SaveManager>
 {
     public bool isJsonPretty = false;
+    private string sceneName = null;
     
     protected override void Awake()
     {
