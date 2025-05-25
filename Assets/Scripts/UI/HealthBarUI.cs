@@ -62,11 +62,13 @@ public class HealthBarUI : MonoBehaviour
         {
             Destroy(UIbar.gameObject);
         }
+        else
+        {
+            UIbar.gameObject.SetActive(true);
+            timeLeftBeingVisible = visibleTime;
 
-        UIbar.gameObject.SetActive(true);
-        timeLeftBeingVisible = visibleTime;
-
-        float sliderPercent = (float)currentHealth / maxHealth;
-        healthSlider.fillAmount = sliderPercent;
+            float sliderPercent = (float)currentHealth / maxHealth;
+            healthSlider.fillAmount = sliderPercent;
+        }
     }
 }
