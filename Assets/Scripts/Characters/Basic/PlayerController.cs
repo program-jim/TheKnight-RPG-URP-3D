@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.RegisterPlayer(characterStates);
+        SaveManager.Instance.LoadPlayerData();
     }
 
     private void Update()
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         MouseManager.Instance.OnMouseClicked += MoveToTarget;
         MouseManager.Instance.OnEnemyClicked += EventAttack;
+        GameManager.Instance.RegisterPlayer(characterStates);
     }
 
     private void OnDisable()

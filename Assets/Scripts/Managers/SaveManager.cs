@@ -6,7 +6,15 @@ using UnityEngine.SceneManagement;
 public class SaveManager : SingletonMono<SaveManager>
 {
     public bool isJsonPretty = false;
-    private string sceneName = null;
+    private string sceneName = "Game";
+
+    public string SceneName
+    {
+        get
+        {
+            return PlayerPrefs.GetString(sceneName);
+        }
+    }
     
     protected override void Awake()
     {
@@ -16,7 +24,30 @@ public class SaveManager : SingletonMono<SaveManager>
 
     private void Update()
     {
-        
+    #if UNITY_EDITOR
+        TestInput();
+    #endif
+    }
+
+    public void TestInput()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            SavePlayerData();
+            Debug.Log("Saved player data in editor");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadPlayerData();
+            Debug.Log("Loaded player data in editor");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Transfering to Main Scene in editor");
+            SceneController.Instance.TransitionToMain();
+        }
     }
 
     public void Save(string key, object data)

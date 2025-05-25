@@ -39,6 +39,16 @@ public class SceneController : SingletonMono<SceneController>
         }
     }
 
+    public void TransitionToMain()
+    {
+        StartCoroutine(LoadMainLevel());
+    }
+
+    public void TransitionToLoadGame()
+    {
+        StartCoroutine(LoadLevel(SaveManager.Instance.SceneName));
+    }
+
     IEnumerator Transition(string sceneName, DestinationType destinationType)
     {
         // Save data.
@@ -69,7 +79,7 @@ public class SceneController : SingletonMono<SceneController>
         }
     }
 
-    public IEnumerator LoadLevel(string scene)
+    IEnumerator LoadLevel(string scene)
     {
         if (scene == null)
         {
@@ -83,6 +93,12 @@ public class SceneController : SingletonMono<SceneController>
 
         // Save player data
         SaveManager.Instance.SavePlayerData();
+        yield break;
+    }
+
+    IEnumerator LoadMainLevel()
+    {
+        yield return SceneManager.LoadSceneAsync("Main");
         yield break;
     }
 

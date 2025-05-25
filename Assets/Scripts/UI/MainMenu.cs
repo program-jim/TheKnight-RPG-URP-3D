@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
     public void ContinueGame()
     {
         // Scene switching and read PlayerPrefs data.
-
+        SceneController.Instance.TransitionToLoadGame();
     }
 
     public void QuitGame()
