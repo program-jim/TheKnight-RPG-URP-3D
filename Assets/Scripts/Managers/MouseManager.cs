@@ -72,6 +72,10 @@ public class MouseManager : SingletonMono<MouseManager>
                 case "Portal":
                     Cursor.SetCursor(doorway, cursorOffset, cursorMode);
                     break;
+
+                default:
+                    Cursor.SetCursor(arrow, cursorOffset, cursorMode);
+                    break;
             }
         }
     }

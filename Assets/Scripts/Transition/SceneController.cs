@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class SceneController : SingletonMono<SceneController>
+public class SceneController : SingletonMono<SceneController>, IEndGameObserver
 {
     public GameObject playerPrefab;
     private GameObject player;
+    public SceneFader sceneFaderPrefab;
     private NavMeshAgent playerAgent;
 
     public string firstSceneName = "Game";
@@ -56,6 +57,7 @@ public class SceneController : SingletonMono<SceneController>
         
         if (sceneName != SceneManager.GetActiveScene().name)
         {
+            // FIXME: Can add SceneFader.
             yield return SceneManager.LoadSceneAsync(sceneName);
             yield return Instantiate(playerPrefab, GetTransitionDestination(destinationType).transform.position, GetTransitionDestination(destinationType).transform.rotation);
             
@@ -85,7 +87,9 @@ public class SceneController : SingletonMono<SceneController>
         {
             yield break;
         }
-        
+
+        var fade = Instantiate(sceneFaderPrefab);
+        yield return StartCoroutine(fade.FadeOut(2.5f));
         yield return SceneManager.LoadSceneAsync(scene);
 
         // TODO: The position to get can be replaced with GameManager.Instance.GetEntrance()
@@ -93,12 +97,16 @@ public class SceneController : SingletonMono<SceneController>
 
         // Save player data
         SaveManager.Instance.SavePlayerData();
+        yield return StartCoroutine(fade.FadeIn(2.5f));
         yield break;
     }
 
     IEnumerator LoadMainLevel()
     {
+        var fade = Instantiate(sceneFaderPrefab);
+        yield return StartCoroutine(fade.FadeOut(2.5f));
         yield return SceneManager.LoadSceneAsync("Main");
+        yield return StartCoroutine(fade.FadeIn(2.5f));
         yield break;
     }
 
@@ -115,5 +123,10 @@ public class SceneController : SingletonMono<SceneController>
         }
 
         return null;
+    }
+
+    public void EndNotify()
+    {
+        throw new System.NotImplementedException();
     }
 }
