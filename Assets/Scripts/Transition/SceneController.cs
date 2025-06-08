@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : SingletonMono<SceneController>, IEndGameObserver
 {
+    public bool isFadeFinished;
     public GameObject playerPrefab;
     private GameObject player;
     public SceneFader sceneFaderPrefab;
@@ -19,6 +20,12 @@ public class SceneController : SingletonMono<SceneController>, IEndGameObserver
     {
         base.Awake();
         DontDestroyOnLoad(this);
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.AddObserver(this);
+        isFadeFinished = true;
     }
 
     public void TransitionToFirstLevel()
@@ -127,6 +134,11 @@ public class SceneController : SingletonMono<SceneController>, IEndGameObserver
 
     public void EndNotify()
     {
-        throw new System.NotImplementedException();
+        if (isFadeFinished)
+        {
+            isFadeFinished = false;
+            StartCoroutine(LoadMainLevel());
+        }
     }
+
 }
